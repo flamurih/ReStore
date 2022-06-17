@@ -10,7 +10,7 @@ namespace API.Data
                 new Product{
                     Name = "Mbathje Adidas Nr.42",
                     Description = "Mbathje Adidas Modeli i ri",
-                    Price = 135,
+                    Price = 125,
                     PictureUrl = "/images/products/adidas-boost.png",
                     Brand = "Adidas",
                     Type = "Puma",
@@ -19,7 +19,7 @@ namespace API.Data
                 new Product{
                     Name = "Mbathje Nike Nr.42",
                     Description = "Mbathje Nike Modeli i ri",
-                    Price = 135,
+                    Price = 65,
                     PictureUrl = "/images/products/adidas-boost.png",
                     Brand = "Nike",
                     Type = "Puma",
@@ -28,7 +28,7 @@ namespace API.Data
                 new Product{
                     Name = "Mbathje PUMA Nr.42",
                     Description = "Mbathje PUMA Modeli i ri",
-                    Price = 135,
+                    Price = 79,
                     PictureUrl = "/images/products/adidas-boost.png",
                     Brand = "PUMA",
                     Type = "Puma",
