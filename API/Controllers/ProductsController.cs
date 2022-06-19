@@ -10,7 +10,7 @@ namespace API.Controllers
         public readonly StoreContext _context;
         public ProductsController(StoreContext context)
         {
-            _context = context;
+            _context = contexxt;
         }
 
         [HttpGet]
