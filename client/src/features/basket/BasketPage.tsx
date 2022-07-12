@@ -11,9 +11,8 @@ export default function BasketPage() {
     const {basket, status} = useAppSelector(state => state.basket);
     const dispatch = useAppDispatch();
 
-
-
     if(!basket) return <Typography variant='h3'>Your basket is empty !</Typography>
+    
   return (
     <>
         <TableContainer component={Paper}>

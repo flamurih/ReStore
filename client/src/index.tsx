@@ -6,8 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store/configureStore';
+import { fetchProductsAsync } from './features/catalog/catalogSlice';
 
 
+store.dispatch(fetchProductsAsync());
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
