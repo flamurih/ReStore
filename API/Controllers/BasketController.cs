@@ -9,7 +9,7 @@ namespace API.Controllers
     public class BasketController : BaseApiController
     {
         private readonly StoreContext _context;
-        public BasketController(StoreContext contexts)
+        public BasketController(StoreContext context)
         {
             _context = context;
         }
