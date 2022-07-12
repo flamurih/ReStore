@@ -1,6 +1,6 @@
 import { Button, Divider, Paper, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function ServerError() {
     const history = useNavigate();
