@@ -14,7 +14,7 @@ namespace API.Data
                     PictureUrl = "/images/products/adidas-boost.png",
                     Brand = "Adidas",
                     Type = "Puma",
-                    QuantityInStock = 100
+                    QuantityInStock = 1000
                 },
                 new Product{
                     Name = "Mbathje Nike Nr.42",

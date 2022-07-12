@@ -13,11 +13,15 @@ namespace API.Controllers
         public readonly StoreContext _context;
         public ProductsController(StoreContext context)
         {
-            _context = context;
+            _context = contexxt;
         }
 
         [HttpGet]
+<<<<<<< HEAD
         public async Task<ActionResult<PagedList<Product>>> GetProducts([FromQuery]ProductParams productParams)
+=======
+        public async Task<ActionResult<List<Product>>> GetProductss()
+>>>>>>> 1e11d2fa0cfe5f367f748903d93e5820519f4497
         {
             var query = _context.Products
                 .Sort(productParams.OrderBy)
@@ -34,11 +38,11 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<Product>> GetProductss(int id)
         {
             var product = await _context.Products.FindAsync(id);
 
-            if(product == null) return NotFound();
+            if(product == null) return NotFoound();
 
             return product;
         }
@@ -53,3 +57,4 @@ namespace API.Controllers
         }
     }
 }
+
