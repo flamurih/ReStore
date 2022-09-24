@@ -1,95 +1,45 @@
-import { Checkbox, FormControlLabel, Grid, TextField, Typography } from "@mui/material";
+import {
+  Grid,
+  Typography,
+} from "@mui/material";
+import { useFormContext } from "react-hook-form";
+import AppCheckbox from "../../app/components/AppCheckbox";
+import AppTextInput from "../../app/components/AppTextInput";
 
 export default function AddressForm() {
+  const { control } = useFormContext();
   return (
     <>
-        <Typography variant="h6" gutterBottom>
-            Shipping address
-        </Typography>
-        <Grid container spacing ={3}>
+      <Typography variant="h6" gutterBottom>
+        Shipping address
+      </Typography>
+        <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
-            <TextField
-                required
-                id="firstName"
-                name="firstName"
-                label="First Name"
-                fullWidth
-                autoComplete="given-name"
-                variant="standard"
+            <AppTextInput control={control} name="fullName" label="Full name" />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <AppTextInput control={control} name="address1" label="Address 1" />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <AppTextInput control={control} name="address2" label="Address 2" />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <AppTextInput control={control} name="state" label="State" />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <AppTextInput
+              control={control}
+              name="zip"
+              label="Zip / Postal code"
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-                required
-                id="lastName"
-                name="lastName"
-                label="Last Name"
-                fullWidth
-                autoComplete="family-name"
-                variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-                required
-                id="address1"
-                name="address1"
-                label="Address line 1"
-                fullWidth
-                autoComplete="shipping address-level1"
-                variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-                required
-                id="address2"
-                name="address2"
-                label="Address line 2"
-                fullWidth
-                autoComplete="shipping address-level1"
-                variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-                required
-                id="state"
-                name="state"
-                label="State/Province/Region"
-                fullWidth
-                variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-                required
-                id="zip"
-                name="zip"
-                label="Zip / Postal Code"
-                fullWidth
-                autoComplete="shipping postal-code"
-                variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-                required
-                id="country"
-                name="country"
-                label="Country"
-                fullWidth
-                autoComplete="shipping country"
-                variant="standard"
-            />
+            <AppTextInput control={control} name="country" label="Country" />
           </Grid>
           <Grid item xs={12}>
-            <FormControlLabel 
-                control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-                label="Use this address for payment details"
-            />
+            <AppCheckbox name='saveAddress' label="Save this as the default address" />
           </Grid>
         </Grid>
     </>
-  )
+  );
 }
