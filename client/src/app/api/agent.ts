@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { request } from "http";
 import { toast } from "react-toastify";
 import { PaginatedResponse } from "../models/pagination";
 import { store } from "../store/configureStore";
@@ -87,7 +88,8 @@ const Basket = {
 const Account ={
   login: (values: any) => requests.post('account/login', values),
   register: (values: any) => requests.post('account/register', values),
-  currentUser: (values?: any) => requests.get('account/currentUser')
+  currentUser: (values?: any) => requests.get('account/currentUser'),
+  fetchAddress: () => requests.get('account,savedAddress')
 }
 
 const Orders = {
