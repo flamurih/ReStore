@@ -47,7 +47,7 @@ export default function PaymentForm() {
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<CheckBox color="secondary" name="saveCard" />}
+            control={<CheckBox color="secondary" name="saveCard"/>}
             label="Remember credit card details for next time"
           />
         </Grid>

@@ -78,6 +78,9 @@ namespace API.Data.Migrations
                     b.Property<long>("Subtotal")
                         .HasColumnType("INTEGER");
 
+                    b.Property<long>("Total")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
@@ -172,14 +175,14 @@ namespace API.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "75d09dda-0de1-40f8-8c07-ed2fee0985d0",
+                            ConcurrencyStamp = "9303d50a-638e-4c92-9c2a-60ef789b3745",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "5d5f6ad8-b890-4f5c-9c1b-b67349dea53d",
+                            ConcurrencyStamp = "b7b56803-c8a7-46a9-989b-624d1c8d2c7f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

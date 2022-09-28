@@ -89,7 +89,7 @@ const Account ={
   login: (values: any) => requests.post('account/login', values),
   register: (values: any) => requests.post('account/register', values),
   currentUser: (values?: any) => requests.get('account/currentUser'),
-  fetchAddress: () => requests.get('account,savedAddress')
+  fetchAddress: () => requests.get('account/savedAddress')
 }
 
 const Orders = {

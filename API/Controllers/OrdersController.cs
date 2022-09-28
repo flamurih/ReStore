@@ -85,7 +85,7 @@ namespace API.Controllers
                 .Include(a=> a.Address)
                 .FirstOrDefaultAsync(x => x.UserName == User.Identity.Name);
 
-                var Address = new UserAddress
+                var address = new UserAddress
                 {
                     FullName = orderDto.ShippingAddress.FullName,
                     Address1 = orderDto.ShippingAddress.Address1,
@@ -95,7 +95,7 @@ namespace API.Controllers
                     Zip = orderDto.ShippingAddress.Zip,
                     Country = orderDto.ShippingAddress.Country,
                 };
-                user.Address = Address;
+                user.Address = address;
                 
             }
 

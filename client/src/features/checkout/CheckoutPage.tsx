@@ -50,12 +50,13 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     agent.Account.fetchAddress()
-        .then(response => {
-          if (response) {
-            methods.reset({...methods.getValues(), ...response, saveAddress: false})
-          }
-        })
+      .then(response => {
+        if(response){
+          methods.reset({...methods.getValues(), ...response, saveAddress:false})
+        }
+      })
   }, [methods])
+
 
   const handleNext = async (data: FieldValues) => {
     const {nameOnCard, saveAddress, ...shippingAddress} = data;

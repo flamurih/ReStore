@@ -13,7 +13,6 @@ export default function AppCheckbox(props: Props) {
     <FormControlLabel 
         control={
             <Checkbox 
-
                 {...field}
                 checked={field.value}
                 color='secondary'

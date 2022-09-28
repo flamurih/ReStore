@@ -1,6 +1,7 @@
 using System.Collections.Concurrent;
 using API.DTOs;
 using API.Entities.OrderAggregate;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions
 {
@@ -26,7 +27,7 @@ namespace API.Extensions
                         Price = item.Price,
                         Quantity = item.Quantity
                     }).ToList()   
-                });
+                }).AsNoTracking();
         }
     }
 }

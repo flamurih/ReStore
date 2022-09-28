@@ -92,7 +92,7 @@ namespace API.Controllers
         }
 
         [Authorize]
-        [HttpGet("saveAddress")]
+        [HttpGet("savedAddress")]
         public async Task<ActionResult<UserAddress>> GetSavedAddress()
         {
             return await _userManager.Users

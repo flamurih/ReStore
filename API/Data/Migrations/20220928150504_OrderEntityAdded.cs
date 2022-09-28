@@ -80,7 +80,8 @@ namespace API.Data.Migrations
                     OrderDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Subtotal = table.Column<long>(type: "INTEGER", nullable: false),
                     DeliveryFee = table.Column<long>(type: "INTEGER", nullable: false),
-                    OrderStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                    OrderStatus = table.Column<int>(type: "INTEGER", nullable: false),
+                    Total = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -289,12 +290,12 @@ namespace API.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 1, "75d09dda-0de1-40f8-8c07-ed2fee0985d0", "Member", "MEMBER" });
+                values: new object[] { 1, "9303d50a-638e-4c92-9c2a-60ef789b3745", "Member", "MEMBER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 2, "5d5f6ad8-b890-4f5c-9c1b-b67349dea53d", "Admin", "ADMIN" });
+                values: new object[] { 2, "b7b56803-c8a7-46a9-989b-624d1c8d2c7f", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
