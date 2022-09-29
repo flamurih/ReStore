@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useCallback, useEffect } from "react";
 import { clearBasket } from "../../features/basket/basketSlice";
+import { Link } from "react-router-dom";
+
 
 export default function SignInMenu() {
   const navigate = useNavigate();
@@ -36,7 +38,7 @@ export default function SignInMenu() {
         TransitionComponent={Fade}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My orders</MenuItem>
+        <MenuItem Component={Link} to='/orders'>My orders</MenuItem>
         <MenuItem
           onClick={() => {
             dispatch(signOut());
