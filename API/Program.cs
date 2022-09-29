@@ -82,6 +82,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<PaymentService>();
 
 var app = builder.Build();
 using var scope = app.Services.CreateScope();
