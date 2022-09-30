@@ -7,6 +7,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store/configureStore';
 import { fetchProductsAsync } from './features/catalog/catalogSlice';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 store.dispatch(fetchProductsAsync());
 const root = ReactDOM.createRoot(

@@ -18,10 +18,11 @@ import agent from "../../app/api/agent";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { clearBasket } from "../basket/basketSlice";
 import { LoadingButton } from "@mui/lab";
-import { StripeElementType } from "@stripe/stripe-js";
+import { StripeCardElement, StripeElementType } from "@stripe/stripe-js";
 import { CardNumberElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
 const steps = ["Shipping address", "Review your Order", "Payment details"];
+
 
 export default function CheckoutPage() {
   const [activeStep, setActiveStep] = useState(0);
@@ -41,6 +42,9 @@ export default function CheckoutPage() {
   const {basket} = useAppSelector(state => state.basket);
   const stripe = useStripe();
   const elements = useElements();
+
+  const client_secret = basket!.clientSecret.toString();
+
 
   function onCardInputChange(event: any) {
     setCardState({
@@ -95,7 +99,7 @@ export default function CheckoutPage() {
       if(!stripe || !elements) return; //stripe not ready
       try {
         const cardElement = elements.getElement(CardNumberElement);
-        const paymentResult = await stripe.confirmCardPayment(basket?.clientSecret!, {
+        const paymentResult = await stripe.confirmCardPayment(client_secret, {
           payment_method: {
             card: cardElement!,
             billing_details: {
@@ -125,7 +129,8 @@ export default function CheckoutPage() {
         console.log(error);
         setLoading(false);
       }
-  }
+    };
+
 
   const handleNext = async (data: FieldValues) => {
     if (activeStep === steps.length - 1) {
@@ -140,7 +145,7 @@ export default function CheckoutPage() {
   };
 
   function submitDisabled(): boolean {
-    if (activeStep == steps.length - 1) {
+    if (activeStep === steps.length - 1) {
       return (
         !cardComplete.cardCvc ||
         !cardComplete.cardExpiry ||

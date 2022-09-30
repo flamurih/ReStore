@@ -1,9 +1,12 @@
 import { Grid, TextField, Typography } from "@mui/material";
-import { CardCvcElement, CardExpiryElement, CardNumberElement } from "@stripe/react-stripe-js";
-import { StripeElementType } from "@stripe/stripe-js";
-import { useState } from "react";
+import { CardCvcElement, CardExpiryElement, CardNumberElement, Elements } from "@stripe/react-stripe-js";
+import { loadStripe, StripeElementType } from "@stripe/stripe-js";
+import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import agent from "../../app/api/agent";
 import AppTextInput from "../../app/components/AppTextInput";
+import { useAppDispatch } from "../../app/store/configureStore";
+import { setBasket } from "../basket/basketSlice";
 import { StripeInput } from "./StripeInput";
 
 interface Props {
@@ -11,11 +14,24 @@ interface Props {
   onCardInputChange: (event: any) => void;
 }
 
+const stripePromise = loadStripe('pk_test_51LnNCWEdYseqauRRtlqc8Xa97XwjVXs9YQQdxGLg9HsyBfUDMrPUOB0JJA25RDlbrwWrmrJzakEJTI7BUkDCh5b800M9lQeIZs');
+
+
 export default function PaymentForm({cardState, onCardInputChange}: Props) {
   const { control } = useFormContext();
 
+  const dispatch = useAppDispatch();
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  agent.Payments.createPaymentIntent()
+    .then(basket => dispatch(setBasket(basket)))
+    .catch(error => console.log(error))
+    .finally(() => setLoading(false))
+}, [dispatch])
+
   return (
-    <>
+    <Elements stripe={stripePromise}>
       <Typography variant="h6" gutterBottom>
         Payment method
       </Typography>
@@ -85,6 +101,6 @@ export default function PaymentForm({cardState, onCardInputChange}: Props) {
           />
         </Grid>
       </Grid>
-    </>
+    </Elements>
   );
 }
