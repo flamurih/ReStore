@@ -11,9 +11,35 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<StoreContext>(opt =>
-opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+builder.Services.AddDbContext<StoreContext>(opt => {
+    var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    string connStr;
+    if(env == "Development")
+    {
+        connStr = builder.Configuration.GetConnectionString("DefaultConnection");
+    }
+    else
+    {
+        var connUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+
+        connUrl = connUrl.Replace("postgres://", string.Empty);
+        var pgUserPass = connUrl.Split("@")[0];
+        var pgHostPortDb = connUrl.Split("@")[1];
+        var pgHostPort = pgHostPortDb.Split("/")[0];
+        var pgDb = pgHostPortDb.Split("/")[1];
+        var pgUser = pgUserPass.Split(":")[0];
+        var pgPass = pgUserPass.Split(":")[1];
+        var pgHost = pgHostPort.Split(":")[0];
+        var pgPort = pgHostPort.Split(":")[1];
+
+        connStr = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb};SSL Mode=Require;Trust Server Certificate=true";
+    }
+    opt.UseNpgsql(connStr);
+}
+    
+);
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -109,6 +135,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseMiddleware<ExceptionMiddleware>();
 
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseCors("corsapp");
 
 //app.UseHttpsRedirection();
@@ -117,5 +147,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapFallbackToController("Index","Fallback");
 
 await app.RunAsync();
