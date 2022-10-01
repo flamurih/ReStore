@@ -43,7 +43,7 @@ export default function CheckoutPage() {
   const stripe = useStripe();
   const elements = useElements();
 
-  const client_secret = basket!.clientSecret.toString();
+  const client_secret = basket!.clientSecret!.toString();
 
 
   function onCardInputChange(event: any) {
